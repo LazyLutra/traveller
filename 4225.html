@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/traveller/pics/other/tabImg.jpg">
+  <link rel="icon" href="/traveller/pics/other/tabImg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="征蓬">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Java及相关知识学习路线和常用工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习路线和常用工具">
+<meta property="og:url" content="https://lazylutra.github.io/traveller/4225.html">
+<meta property="og:site_name" content="征蓬">
+<meta property="og:description" content="Java及相关知识学习路线和常用工具。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/LazyLutra/imgBed/main/JavaLearningPath.png">
+<meta property="article:published_time" content="2021-01-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-01-18T06:26:02.918Z">
+<meta property="article:author" content="征蓬">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/LazyLutra/imgBed/main/JavaLearningPath.png">
+  
+  
+  
+  <title>学习路线和常用工具 - 征蓬</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/traveller/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/traveller/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/traveller/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lazylutra.github.io","root":"/traveller/","version":"1.9.4","typing":{"enable":true,"typeSpeed":80,"cursorChar":"✨","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/traveller/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/traveller/js/utils.js" ></script>
+  <script  src="/traveller/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/traveller/">
+      <strong>征蓬</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/traveller/pics/other/09.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="学习路线和常用工具"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-24 00:00" pubdate>
+          2021年1月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          795 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">学习路线和常用工具</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="学习路线图">学习路线图</h2>
+<p>图片链接：<a target="_blank" rel="noopener" href="https://www.processon.com/view/link/600e2fd27d9c085b8d5c11d3">Java开发学习路线</a></p>
+<p><img src="https://raw.githubusercontent.com/LazyLutra/imgBed/main/JavaLearningPath.png" srcset="/traveller/img/loading.gif" lazyload alt="学习路线"></p>
+<h2 id="资料和工具总结">资料和工具总结</h2>
+<table>
+   <tr><th colspan="4" align="center">总结</th></tr>
+   <tr>
+      <td></td>
+      <th align="center">类别</th>
+      <th align="center">推荐</td>
+      <th align="center">备注</th>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>虚拟机</td>
+      <td>《深入理解 Java 虚拟机》</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>2</td>
+      <td>并发</td>
+      <td>《Java并发编程的艺术》</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td rowspan = "3">3</td>
+      <td rowspan = "3">数据结构</td>
+      <td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">LeetCode</a></td>
+      <td>数据结构和算法、刷题</td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://visualgo.net/en">visualgo</a></td>
+      <td>数据结构图解</td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">Data Structure Visualizations</a></td>
+      <td>数据结构可视化</td>
+   </tr>
+   <tr>
+      <td rowspan = "3">4</td>
+      <td rowspan = "3">网络</td>
+      <td>《图解HTTP》</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="http://www.52im.net/topic-tcpipvol1.html?mobile=no">TCP/IP详解 卷1：协议</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Up411Z7hC">计算机网络 哈工大 - 李全龙</a></td>
+      <td>参考《计算机网络：自顶向下方法》学习</td>
+   </tr>
+   <tr>
+      <td>5</td>
+      <td>数据库</td>
+      <td><a target="_blank" rel="noopener" href="http://www.sqlfiddle.com/">sqlfiddle</a></td>
+      <td>在线模拟、测试</td>
+   </tr>
+   <tr>
+      <td>6</td>
+      <td>MySQL</td>
+      <td><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/100020801?code=Zw4xbOz6Flajx0bTxWmfCLQqT2wySyowGsYXivJhYxc%3D">MySQL实战45讲</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td rowspan = "3">7</td>
+      <td rowspan = "3">设计模式</td>
+      <td><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/intro/100039001?code=GsywKCzXZTDtjK2hht1qm3tuZMVjx%2FefX-OFAKK9yK8%3D">设计模式之美</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html">设计模式 | 菜鸟教程</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://refactoringguru.cn/"> Refactoring Guru</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>8</td>
+      <td>Linux</td>
+      <td>《鸟哥的Linux 私房菜》</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>9</td>
+      <td>Git</td>
+      <td><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-tutorial.html">Git 教程 | 菜鸟教程</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>10</td>
+      <td>Spring Boot</td>
+      <td><a target="_blank" rel="noopener" href="http://www.ityouknow.com/spring-boot.html">纯洁的微笑</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td rowspan = "3">11</td>
+      <td rowspan = "3">Spring Cloud</td>
+      <td><a target="_blank" rel="noopener" href="https://blog.csdn.net/forezp/column/info/15197">史上最简单的Spring Cloud教程</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="http://www.springcloud.com.cn/">Spring Cloud中文学习指南</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://blog.didispace.com/spring-cloud-learning/">Spring Cloud 从入门到精通</a></td>
+      <td>Dalston版为基础教程，较为全面</td>
+   </tr>
+   <tr>
+      <td>12</td>
+      <td>Spring Cloud Aliababa</td>
+      <td><a target="_blank" rel="noopener" href="https://blog.didispace.com/spring-cloud-learning/">Spring Cloud 从入门到精通</a></td>
+      <td>Finchley版</td>
+   </tr>
+   <tr>
+      <td>13</td>
+      <td>RabbitMQ</td>
+      <td>《RabbitMQ实战指南》</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td rowspan = "2">14</td>
+      <td rowspan = "2">Kafka</td>
+      <td>《深入理解Kafka》</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://blog.csdn.net/lizhitao/article/details/39499283">apache kafka技术分享系列(目录索引)</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>15</td>
+      <td>容器</td>
+      <td><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html">Docker 入门教程 阮一峰</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td rowspan = "2">16</td>
+      <td rowspan = "2">UML工具</td>
+      <td><a target="_blank" rel="noopener" href="https://www.processon.com/">processon</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://www.planttext.com/">planttext</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>17</td>
+      <td>表格、JSON、SQL生成或互相转换</td>
+      <td><a target="_blank" rel="noopener" href="https://tableconvert.com/">tableconvert</a></td>
+      <td>支持转换的文件格式很多</td>
+   </tr>
+   <tr>
+      <td>18</td>
+      <td>生成徽章</td>
+      <td><a target="_blank" rel="noopener" href="https://shields.io/">shields</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>19</td>
+      <td>Nginx</td>
+      <td><a target="_blank" rel="noopener" href="http://tengine.taobao.org/book/">Nginx开发从入门到精通</a></td>
+      <td></td>
+   </tr>
+      <tr>
+      <td rowspan = "4">20</td>
+      <td rowspan = "4">Tomcat</td>
+      <td><a target="_blank" rel="noopener" href="https://book.douban.com/subject/10426640/">《深入剖析Tomcat》</a></td>
+      <td>本书中的Tomcat版本较低，学习总体框架即可</td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://book.douban.com/subject/27034717/">《Tomcat架构解析》</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://tomcat.apache.org/tomcat-7.0-doc/architecture/startup.html">   
+Apache Tomcat 7 - Startup</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td><a target="_blank" rel="noopener" href="https://tomcat.apache.org/tomcat-7.0-doc/architecture/requestProcess.html">Apache Tomcat 7 - Request Process Flow</a></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>21</td>
+      <td>图片压缩</td>
+      <td><a target="_blank" rel="noopener" href="https://docsmall.com/image-compress">在线图片压缩 - docsmall 在线图片压缩工具,在线图片压缩软件</a></td>
+      <td></td>
+   </tr>
+</table>
+<p>转载：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GQ4y1N7HD">Java后端开发详细学习路线视频教程</a></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/traveller/categories/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>学习路线和常用工具</div>
+      <div>https://lazylutra.github.io/traveller/4225.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>征蓬</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年1月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/traveller/6492.html" title="Mybatis（一）：XML常用标签">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mybatis（一）：XML常用标签</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/traveller/46158.html" title="获取网盘下载地址">
+                        <span class="hidden-mobile">获取网盘下载地址</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/traveller/js/events.js" ></script>
+<script  src="/traveller/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/traveller/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/traveller/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/traveller/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

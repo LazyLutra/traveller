@@ -1,0 +1,992 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/traveller/pics/other/tabImg.jpg">
+  <link rel="icon" href="/traveller/pics/other/tabImg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="征蓬">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP（四）">
+<meta property="og:url" content="https://lazylutra.github.io/traveller/46224.html">
+<meta property="og:site_name" content="征蓬">
+<meta property="og:description" content="总结。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lazylutra.github.io/traveller/pics/cover/http.png">
+<meta property="article:published_time" content="2021-03-31T07:57:27.000Z">
+<meta property="article:modified_time" content="2023-01-09T09:11:55.415Z">
+<meta property="article:author" content="征蓬">
+<meta property="article:tag" content="HTTP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lazylutra.github.io/traveller/pics/cover/http.png">
+  
+  
+  
+  <title>HTTP（四） - 征蓬</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/traveller/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/traveller/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/traveller/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lazylutra.github.io","root":"/traveller/","version":"1.9.4","typing":{"enable":true,"typeSpeed":80,"cursorChar":"✨","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/traveller/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/traveller/js/utils.js" ></script>
+  <script  src="/traveller/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/traveller/">
+      <strong>征蓬</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/traveller/pics/other/09.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTTP（四）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-31 15:57" pubdate>
+          2021年3月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HTTP（四）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="重点">重点</h2>
+<p>首先需要明确几个内容：</p>
+<ol>
+<li>
+<p>TCP/IP协议是由 TCP协议 和 IP协议 组成。</p>
+<p>在TCP/IP的四层模型中，前者在传输层，负责在两台通信的主机之间建立连接；</p>
+<p>后者在网络层，负责处理不同网络之间的发送的数据包，将其分片、重组，以及根据IP地址做路由。</p>
+</li>
+<li>
+<p>HTTP协议是建立在 TCP协议 的基础上。</p>
+<p>每次请求网页时，HTTP会通过TCP建立起一个到服务端的通道，当请求数据都获取完毕后，HTTP会将TCP连接断开。</p>
+</li>
+<li>
+<p>HTTP是无状态的短连接。</p>
+<p>每次向服务端发起请求都要重新建立连接，请求结束后关闭，不记录任何状态。</p>
+</li>
+<li>
+<p>HTTPS为什么安全</p>
+<p>使用SSL保证了传输安全，防止被窃听、窃取数据，可以确认网站的安全性。</p>
+</li>
+<li>
+<p>为什么需要证书</p>
+<p>防止被“中间人”攻击，可以证明网站身份。</p>
+</li>
+</ol>
+<h2 id="HTTP">HTTP</h2>
+<h3 id="报文">报文</h3>
+<h4 id="请求报文">请求报文</h4>
+<p>HTTP的请求报文由 <strong>请求行</strong>、<strong>请求头</strong>、<strong>空行</strong>、<strong>请求内容实体</strong> 四部分组成。</p>
+<p><img src="/pics/HTTP/2-1.2-1.png" srcset="/traveller/img/loading.gif" lazyload alt="请求报文结构"></p>
+<ol>
+<li>
+<p>请求行</p>
+<p>由请求方法、URL、协议版本三部分组成。使用空格隔开。</p>
+</li>
+<li>
+<p>请求头</p>
+<p>由 Key-Value 组成，使用冒号隔开，末尾使用回车符和换行符。</p>
+<p>常用的请求头有：</p>
+<ul>
+<li>User-Agent : 请求的浏览器类型。</li>
+<li>Accept : 客户端可识别的响应内容列表。</li>
+<li>Accept-Language : 客户端可接受的自然语言。</li>
+<li>Accept-Encoding : 客户端可接受的编码格式。</li>
+<li>Accept-Charset : 客户端可接受的字符集。</li>
+<li>Host : 请求的主机名，允许多个域名绑定一个IP地址。</li>
+<li>Connection : 连接方式（close或keeplive）。</li>
+<li>Cookie : 存储在客户端的扩展字段。</li>
+</ul>
+</li>
+<li>
+<p>空行</p>
+<p>最后一个请求头后是空行，告知服务端，以下内容不再是请求头内容了。</p>
+</li>
+<li>
+<p>请求内容</p>
+<p>主要用于POST请求（GET请求内容拼接到URL中）。</p>
+<p>配套的请求头一般有：</p>
+<ul>
+<li>Content-Type : 标识请求内容的类型。</li>
+<li>Content-Length : 标识请求内容的长度。</li>
+</ul>
+</li>
+</ol>
+<h4 id="响应报文">响应报文</h4>
+<p>响应报文由 <strong>状态行</strong>、<strong>响应头</strong>、<strong>空行</strong>、<strong>响应内容实体</strong> 四部分组成。</p>
+<p><img src="/pics/HTTP/2-1.2-2.png" srcset="/traveller/img/loading.gif" lazyload alt="响应报文结构"></p>
+<ol>
+<li>
+<p>状态行</p>
+<p>由HTTP协议版本、状态码、状态码描述三部分组成。</p>
+<p>常用的状态码如下：</p>
+<ul>
+<li>1xx : 服务器已接收到客户端的请求，客户端可以继续发送请求。</li>
+<li>2xx : 服务器已成功接收到请求并处理。</li>
+<li>3xx : 服务器要求客户端重定向。</li>
+<li>4xx : 客户端的请求有非法内容。</li>
+<li>5xx : 服务端未能正确处理客户端的请求，出现错误。</li>
+</ul>
+</li>
+<li>
+<p>响应头</p>
+<p>常见的内容有：</p>
+<ul>
+<li>
+<p>Location : 服务端返回给客户端，用于重定向的新地址。</p>
+</li>
+<li>
+<p>Server : 服务端用来处理请求的软件信息和版本信息。</p>
+</li>
+<li>
+<p>Vary : 标识不可缓存的请求头列表。</p>
+</li>
+<li>
+<p>Connection : 连接方式。</p>
+</li>
+<li>
+<p>close</p>
+<ul>
+<li>客户端：告诉服务端，断开连接，不必等待后续的请求。</li>
+<li>服务端：连接已经关闭。</li>
+</ul>
+</li>
+<li>
+<p>keeplive</p>
+<ul>
+<li>客户端：告诉服务端，完成本次请求的响应后，保持连接，等待后续请求。</li>
+<li>服务端：如果客户端需要保持连接，则该字段需要表明服务器需要保持连接的时间，例如 Keep-Alive: 300 （保持连接300秒）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>空行</p>
+<p>最后一个请求头后是空行，告知服务端，以下内容不再是请求头内容了。</p>
+</li>
+<li>
+<p>响应内容</p>
+<p>服务端返回给客户端的文本信息。</p>
+</li>
+</ol>
+<h3 id="文件分块编码传输">文件分块编码传输</h3>
+<p>分块传输编码只在 <strong>HTTP 1.1</strong> 版本中提供。</p>
+<p>HTTP的应答消息数据都是整个发送的，Content-Length 消息头表示数据的长度，标识了应答消息的结束，后续应答消息的开始。</p>
+<p>如果使用分块传输数据，通常数据块的大小是一致的。</p>
+<p>使用分块传输数据优点如下：</p>
+<ol>
+<li>
+<p>允许服务器为动态生成的内容维持HTTP持久连接。</p>
+</li>
+<li>
+<p>允许服务器在分块数据最后发送消息头字段。</p>
+<p>这个功能在内容生成前无法获取头字段值的情况下很重要。</p>
+</li>
+<li>
+<p>缩短传输时间。</p>
+</li>
+</ol>
+<h3 id="HTTP长连接">HTTP长连接</h3>
+<ol>
+<li>
+<p>定义</p>
+<p>客户端和服务端建立连接后不断开，进行报文的发送和接收，通讯连接一直存在。</p>
+<p>常用于点对点的通信。</p>
+</li>
+<li>
+<p>步骤</p>
+<p>建立连接 —— 数据传输 … 数据传输 —— 断开连接</p>
+</li>
+<li>
+<p>常见场景</p>
+<p>监控系统、数据库连接（如果使用短连接频繁通信，容易造成Socket错误）等</p>
+</li>
+</ol>
+<h3 id="HTTP短连接">HTTP短连接</h3>
+<ol>
+<li>
+<p>定义</p>
+<p>客户端和服务端每进行一次报文的发送和接收，完毕后就断开连接。</p>
+<p>常用于操作频繁，一对多的通信。</p>
+</li>
+<li>
+<p>步骤</p>
+<p>建立连接 —— 数据传输 —— 断开连接<br>
+建立连接 —— 数据传输 —— 断开连接</p>
+</li>
+<li>
+<p>常见场景</p>
+<p>web网站的http服务。</p>
+</li>
+</ol>
+<h3 id="GET和POST的区别">GET和POST的区别</h3>
+<ol>
+<li>
+<p>传输方式</p>
+<ul>
+<li>
+<p>GET：地址栏传输，将请求参数拼接到URL后</p>
+</li>
+<li>
+<p>POST：报文传输</p>
+</li>
+</ul>
+</li>
+<li>
+<p>传送长度</p>
+<ul>
+<li>
+<p>GET：长度受限于URL长度</p>
+</li>
+<li>
+<p>POST：无限制</p>
+</li>
+</ul>
+</li>
+<li>
+<p>产生TCP数据包的数量</p>
+<ul>
+<li>
+<p>GET：一个</p>
+</li>
+<li>
+<p>POST：两个</p>
+</li>
+</ul>
+</li>
+<li>
+<p>安全性</p>
+<ul>
+<li>
+<p>GET：不安全。参数拼接到URL后面，而URL是可见的</p>
+</li>
+<li>
+<p>POST：相对GET安全性较高</p>
+</li>
+</ul>
+</li>
+<li>
+<p>支持的字符集</p>
+<ul>
+<li>
+<p>GET：ASCII字符（不支持中文），如果要传输中文参数，需要提前处理（URL encode等）</p>
+</li>
+<li>
+<p>POST：form所在的html文件的开头处指定</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="HTTPS">HTTPS</h2>
+<h3 id="HTTP和HTTPS的区别">HTTP和HTTPS的区别</h3>
+<ol>
+<li>
+<p>URL地址的开头部分不同</p>
+<ul>
+<li>
+<p>HTTP : http://</p>
+</li>
+<li>
+<p>HTTPS : https://</p>
+</li>
+</ul>
+</li>
+<li>
+<p>数据加密和安全性</p>
+<ul>
+<li>
+<p>HTTP : 无法加密，不安全</p>
+</li>
+<li>
+<p>HTTPS : 可以加密，安全</p>
+</li>
+</ul>
+</li>
+<li>
+<p>标准端口</p>
+<ul>
+<li>
+<p>HTTP : 80</p>
+</li>
+<li>
+<p>HTTPS : 443</p>
+</li>
+</ul>
+</li>
+<li>
+<p>CA证书</p>
+<ul>
+<li>
+<p>HTTP : 不需要证书</p>
+</li>
+<li>
+<p>HTTPS : 需要SSL证书</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="cookie和session">cookie和session</h2>
+<p>维持一个会话的核心就是客户端的唯一标识，即 session id。</p>
+<h3 id="区别">区别</h3>
+<ol>
+<li>
+<p>保存的位置</p>
+<ul>
+<li>
+<p>cookie : 浏览器</p>
+</li>
+<li>
+<p>session : 可以存放在服务端的文件、数据库、内存中</p>
+</li>
+</ul>
+</li>
+<li>
+<p>安全性</p>
+<ul>
+<li>
+<p>cookie : 容易进行cookie欺骗</p>
+</li>
+<li>
+<p>session : 无限制</p>
+</li>
+</ul>
+</li>
+<li>
+<p>运行依赖</p>
+<ul>
+<li>
+<p>cookie : 无</p>
+</li>
+<li>
+<p>session : 依赖于 session id，而session id保存于cookie中</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="其他">其他</h3>
+<ol>
+<li>
+<p>Tomcat</p>
+<p>当使用 kill 命令关闭Tomcat进程时，session会全部丢失；如果手动关闭，则下次启动时，会重新加载到内存中。</p>
+<p>由此可见，在运行时，session保存在内存中。</p>
+</li>
+</ol>
+<h2 id="参考">参考</h2>
+<div id="refer-anchor-1"></div>
+<ul>
+<li>[1] 《图解HTTP》</li>
+</ul>
+<div id="refer-anchor-2"></div>
+<ul>
+<li>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/wuhuagu_wuhuaguo/article/details/78507762">[面试]TCP协议-HTTP协议-HTTPS协议经典面试题</a></li>
+</ul>
+<div id="refer-anchor-3"></div>
+<ul>
+<li>[3] <a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/256231?type=1">【面经】HTTP面试题小结</a></li>
+</ul>
+<div id="refer-anchor-4"></div>
+<ul>
+<li>[4] <a target="_blank" rel="noopener" href="https://www.wkcto.com/article/detail/503">必考的10道http协议面试题（附答案）</a></li>
+</ul>
+<div id="refer-anchor-5"></div>
+<ul>
+<li>[5] <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19786827/answer/21643186">COOKIE和SESSION有什么区别？ - 冯特罗的回答</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/traveller/categories/%E7%BD%91%E7%BB%9C/" class="category-chain-item">网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/traveller/tags/HTTP/">#HTTP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HTTP（四）</div>
+      <div>https://lazylutra.github.io/traveller/46224.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>征蓬</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年3月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/traveller/11256.html" title="MySQL实战 基础篇（一）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL实战 基础篇（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/traveller/55889.html" title="HTTP（三）">
+                        <span class="hidden-mobile">HTTP（三）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/traveller/js/events.js" ></script>
+<script  src="/traveller/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/traveller/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/traveller/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/traveller/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

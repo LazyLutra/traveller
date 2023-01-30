@@ -1,0 +1,925 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/traveller/pics/other/tabImg.jpg">
+  <link rel="icon" href="/traveller/pics/other/tabImg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="征蓬">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="XML配置中常用标签的使用方法相关参数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis（一）：XML常用标签">
+<meta property="og:url" content="https://lazylutra.github.io/traveller/6492.html">
+<meta property="og:site_name" content="征蓬">
+<meta property="og:description" content="XML配置中常用标签的使用方法相关参数。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lazylutra.github.io/traveller/pics/cover/Mybatis.jpg">
+<meta property="article:published_time" content="2021-02-28T08:27:55.000Z">
+<meta property="article:modified_time" content="2023-01-09T09:11:55.424Z">
+<meta property="article:author" content="征蓬">
+<meta property="article:tag" content="Mybatis">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lazylutra.github.io/traveller/pics/cover/Mybatis.jpg">
+  
+  
+  
+  <title>Mybatis（一）：XML常用标签 - 征蓬</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/traveller/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/traveller/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/traveller/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lazylutra.github.io","root":"/traveller/","version":"1.9.4","typing":{"enable":true,"typeSpeed":80,"cursorChar":"✨","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/traveller/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/traveller/js/utils.js" ></script>
+  <script  src="/traveller/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/traveller/">
+      <strong>征蓬</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/traveller/pics/other/09.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mybatis（一）：XML常用标签"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-28 16:27" pubdate>
+          2021年2月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          104 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mybatis（一）：XML常用标签</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="resultMap">resultMap</h2>
+<p>映射文件中的 <code>&lt;resultMap&gt;</code> 元素表示 SQL 返回结果的映射集，主要用来定义映射规则、级联的更新和定义类型转化器等。</p>
+<h3 id="主要结构">主要结构</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 类再实例化时用来注入结果到构造方法 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">constructor</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- ID参数，结果为ID --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">idArg</span>/&gt;</span><br>        <span class="hljs-comment">&lt;!-- 注入到构造方法的一个普通结果 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">arg</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">constructor</span>&gt;</span><br>    <br>    <span class="hljs-comment">&lt;!-- 主键列名 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>/&gt;</span><br>    <span class="hljs-comment">&lt;!-- 注入到字段或JavaBean属性的普通结果 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">result</span>/&gt;</span><br>    <br>    <span class="hljs-comment">&lt;!-- 用于一对一关联 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">association</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span><br>    <span class="hljs-comment">&lt;!-- 用于一对多、多对多关联 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span><br>    <br>    <span class="hljs-comment">&lt;!-- 使用结果值来决定使用哪个结果映射 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">discriminator</span> <span class="hljs-attr">javaType</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 基于某些值的结果映射 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">case</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">discriminator</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>resultMap元素
+<ul>
+<li><em>id</em> 属性是 resultMap 的唯一标识</li>
+<li><em>type</em> 属性表示需要的 POJO</li>
+</ul>
+</li>
+<li>子元素
+<ul>
+<li><em>id</em>：表示哪列是主键</li>
+<li><em>constructor</em>：如果 POJO 没有配置构造方法时，使用该属性进行配置</li>
+<li><em>result</em>：数据表普通列和 POJO 的映射关系</li>
+<li><em>association、collection、discriminator</em>：这三个属性用在级联情况下</li>
+</ul>
+</li>
+</ul>
+<h3 id="查询结果的存储">查询结果的存储</h3>
+<p>查询 SQL 的返回结果可以用 Map 存储，也可以用 POJO 存储。</p>
+<h4 id="Map存储查询结果">Map存储查询结果</h4>
+<ol>
+<li>
+<p>新建 Mapper ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserMapper</span> &#123;<br>	List&lt;Map&lt;String, Object&gt;&gt; <span class="hljs-title function_">selectAllUser</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置 Mapper 对应的 XML 文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.example.demo.mapper.UserMapper&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectAllUser&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;map&quot;</span>&gt;</span><br>        SELECT * FROM TBL_USER_INFO<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> &#123;<br><br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> UserMapper userMapper;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/getAllUser&quot;)</span><br>    <span class="hljs-keyword">public</span> JsonResult <span class="hljs-title function_">getAllUser</span><span class="hljs-params">()</span> &#123;<br><br>        List&lt;Map&lt;String, Object&gt;&gt; maps = userMapper.selectAllUser();<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JsonResult</span>(maps);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;14485234-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;赵百灵&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;34&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;14505273-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;于鬻菊&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;65&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1450ed01-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;郭小宝&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;12&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1451e25f-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;捅主任&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;44&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;14523ca7-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;爱新觉罗筐&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;64&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;145273d9-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;王富贵&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;43&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意事项：</p>
+<p>查询返回 Map 中的 Key 是 SELECT 语句查询的字段名，value 对应的是查询结果中的字段值，每条记录作为一个 Map 保存到 List 中。</p>
+<h4 id="POJO存储查询结果">POJO存储查询结果</h4>
+<p>如果在复杂的映射或级联情况时，使用 POJO 保存查询结果会更加方便地对数据进行后续处理。</p>
+<p>使用 <code>&lt;resultMap&gt;</code> 配置 POJO 类，需要将查询结果的列名和实体类的字段名一一对应；</p>
+<p>查询结果的列名可以来自不同的数据表。</p>
+<ol>
+<li>
+<p>新建 POJO 类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br><br>    <span class="hljs-keyword">private</span> String id;<br><br>    <span class="hljs-keyword">private</span> String userName;<br><br>    <span class="hljs-keyword">private</span> String realName;<br><br>    <span class="hljs-keyword">private</span> String userAge;<br><br>    <span class="hljs-keyword">private</span> String sex;<br>	<br>    <span class="hljs-comment">// 省略了 get、set方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置  <code>&lt;resultMap&gt;</code> 元素：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userResult&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;com.example.demo.entity.User&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;id&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;userName&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;userName&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;realName&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;realName&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;userAge&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;userAge&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;sex&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;sex&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>SELECT 标签中配置 <em>resultMap</em> 元素，引用上一步新建的 <em>resultMap</em>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUserById&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;String&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;userResult&quot;</span>&gt;</span><br>	SELECT * FROM TBL_USER_INFO WHERE id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserMapper</span> &#123;<br>    User <span class="hljs-title function_">selectUserById</span><span class="hljs-params">(String id)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> &#123;<br><br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> UserMapper userMapper;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/getUserById&quot;)</span><br>    <span class="hljs-keyword">public</span> JsonResult <span class="hljs-title function_">getUserById</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userMapper.selectUserById(<span class="hljs-string">&quot;14505273-6af8-11eb-a63f-000c29ca29a1&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JsonResult</span>(user);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;14505273-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;于鬻菊&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;realName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;65&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;sex&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="SELECT">SELECT</h2>
+<p>在 Mapper 映射的 XML 文件中，<code>&lt;select&gt;</code> 用于 SQL 的 SELECT 语句，示例如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUserById&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;String&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;userResult&quot;</span>&gt;</span><br>	SELECT * FROM TBL_USER_INFO WHERE id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="属性">属性</h3>
+<table>
+<thead>
+<tr>
+<th><div align="center"><b>属性名称</b></div></th>
+<th><div align="center"><b>描述</b></div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>和 Mapper 的命名空间组合使用，是唯一标识符。</td>
+</tr>
+<tr>
+<td>parameterType</td>
+<td>SQL语句传入参数的类型或者别名，是一个可选属性。</td>
+</tr>
+<tr>
+<td>resultType</td>
+<td>查询结果的返回类型，和 resultMap 二选一。</td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>映射集的引用，需要和 &lt;resultMap&gt; 元素一起使用，和 resultType二选一。</td>
+</tr>
+<tr>
+<td>flushCache</td>
+<td>调用SQL语句后是否清空本地缓存和二级缓存；默认为false</td>
+</tr>
+<tr>
+<td>useCache</td>
+<td>二级缓存设置，将查询结果保存到二级缓存中；默认为false</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>设置超时时间，单位为秒(s)，超时后抛出异常</td>
+</tr>
+<tr>
+<td>fetchSize</td>
+<td>获取记录总条数设置，每查出多少条后，再获取之后的数据；MySQL不支持fetchSize设置</td>
+</tr>
+<tr>
+<td>statementType</td>
+<td>设置JDBC的Statement，可选值如下：STATEMENT（Statement）、 PREPARED（PreparedStatement）、CALLABLE（CallableStatement）</td>
+</tr>
+<tr>
+<td>resultSetType</td>
+<td>这是针对 JDBC 的 ResultSet 接口而言，其值可设置为 FORWARD_ONLY（只允许向前访问）、SCROLL_SENSITIVE（双向滚动，但不及时更新）、SCROLLJNSENSITIVE（双向滚动，及时更新）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="多个参数查询">多个参数查询</h3>
+<p>在开发时，经常需要多个查询条件进行查询，在 Mybatis 中支持使用 Map 和 JavaBean 进行参数传递，实现多个参数查询的功能。</p>
+<p>业务不复杂、参数较少的情况下可以使用 Map ，更加方便；参数较多时，使用 JavaBean 。</p>
+<h4 id="Map">Map</h4>
+<ol>
+<li>
+<p>新建Mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;User&gt; <span class="hljs-title function_">selectUserByRealNameAndSex</span><span class="hljs-params">(Map&lt;String,Object&gt; param)</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置 Mapper 对应的 XML 文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUserByRealNameAndSex&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;userResult&quot;</span>&gt;</span><br>	SELECT * FROM TBL_USER_INFO<br>	WHERE <br>    	realName LIKE CONCAT(&#x27;%&#x27;,#&#123;realName&#125;,&#x27;%&#x27;)<br>		AND sex = #&#123;sex&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/getUserByRnameSex&quot;)</span><br><span class="hljs-keyword">public</span> JsonResult <span class="hljs-title function_">getUserByRealNameAndSex</span><span class="hljs-params">()</span>&#123;<br><br>	Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>	map.put(<span class="hljs-string">&quot;realName&quot;</span>,<span class="hljs-string">&quot;赵&quot;</span>);<br>	map.put(<span class="hljs-string">&quot;sex&quot;</span>,<span class="hljs-string">&quot;男&quot;</span>);<br><br>	List&lt;User&gt; list = userMapper.selectUserByRealNameAndSex(map);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JsonResult</span>(list);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;14485234-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;赵百灵&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;realName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;赵百灵&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;34&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;sex&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;男&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="JavaBean">JavaBean</h4>
+<ol>
+<li>
+<p>新建 Mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;User&gt; <span class="hljs-title function_">selectUserByRealNameAndSex</span><span class="hljs-params">(User user)</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置 Mapper 对应的 XML 文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectUserByRealNameAndSex&quot;</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;userResult&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.example.demo.entity.User&quot;</span>&gt;</span><br>	SELECT * FROM TBL_USER_INFO<br>	WHERE<br>		realName LIKE CONCAT(&#x27;%&#x27;,#&#123;realName&#125;,&#x27;%&#x27;)<br>		AND sex = #&#123;sex&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/getUserByRnameSex&quot;)</span><br><span class="hljs-keyword">public</span> JsonResult <span class="hljs-title function_">getUserByRealNameAndSex</span><span class="hljs-params">()</span>&#123;<br><br>	<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>	user.setRealName(<span class="hljs-string">&quot;赵&quot;</span>);<br>	user.setSex(<span class="hljs-string">&quot;男&quot;</span>);<br><br>	List&lt;User&gt; list = userMapper.selectUserByRealNameAndSex(user);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JsonResult</span>(list);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;14485234-6af8-11eb-a63f-000c29ca29a1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;赵百灵&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;realName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;赵百灵&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;userAge&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;34&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;sex&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;男&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="INSERT">INSERT</h2>
+<p>映射文件中的 <code>&lt;inseri&gt;</code> 标签用于插入语句，执行完后将返回一个整数，表示该语句的影响行数。</p>
+<p>大部分属性与 <code>&lt;select&gt;</code> 标签的基本属性相同，多了一些特有属性。</p>
+<h3 id="属性-2">属性</h3>
+<table>
+<thead>
+<tr>
+<th><div align="center">属性名称</div></th>
+<th><div align="center"><b>描述</b></div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyProperty</td>
+<td>将插入或更新操作时的返回值赋给 PO 类的某个属性，通常会设置为主键对应的属性。如果是联合主键，可以将多个值用逗号隔开。</td>
+</tr>
+<tr>
+<td>keyColumn</td>
+<td>设置第几列是主键，当主键列不是表中的第 1 列时需要设置。如果是联合主键，可以将多个值用逗号隔开。</td>
+</tr>
+<tr>
+<td>useGeneratedKeys</td>
+<td>该属性将使 MyBatis 使用 JDBC 的 getGeneratedKeys（）方法获取由数据库内部产生的主键，例如 MySQL、SQL Server 等自动递增的字段，其默认值为 false。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="示例">示例</h3>
+<h4 id="插入语句">插入语句</h4>
+<ol>
+<li>
+<p>新建 Mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-title function_">insertUser</span><span class="hljs-params">(User user)</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置 Mapper 对应的 XML 文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.example.demo.entity.User&quot;</span>&gt;</span><br>	INSERT INTO TBL_USER_INFO (id, userName, realName, userAge, sex)<br>	VALUES (#&#123;id&#125;, #&#123;userName&#125;, #&#123;realName&#125;, #&#123;userAge&#125;, #&#123;sex&#125;)<br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/addUser&quot;)</span><br><span class="hljs-keyword">public</span> JsonResult <span class="hljs-title function_">addUser</span><span class="hljs-params">()</span>&#123;<br><br>	<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>	user.setId(UUID.randomUUID().toString().replaceAll(<span class="hljs-string">&quot;-&quot;</span>,<span class="hljs-string">&quot;&quot;</span>));<br>	user.setUserName(<span class="hljs-string">&quot;张王李刘&quot;</span>);<br>	user.setRealName(<span class="hljs-string">&quot;张王&quot;</span>);<br>	user.setUserAge(<span class="hljs-string">&quot;33&quot;</span>);<br>	user.setSex(<span class="hljs-string">&quot;男&quot;</span>);<br><br>	<span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> userMapper.insertUser(user);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JsonResult</span>(flag);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果需要返回自增主键时，可以设置 <em>keyProperty</em> 为主键字段，<em>useGeneratedKeys</em> 为true。</p>
+<p>如果表中不支持或没有设置主键自增时，可以使用 <code>&lt;selectKey&gt;</code> 元素自定义主键，例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.example.demo.entity.User&quot;</span>&gt;</span>   <br>    <span class="hljs-comment">&lt;!-- 使用 selectKey 定义主键，然后再定义SQL --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">selectKey</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;String&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;BEFORE&quot;</span>&gt;</span><br>    	SELECT IF(max(id) is null, 1, max(id) + 1) AS newId FROM TBL_USER_INFO<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">selectKey</span>&gt;</span><br>    <br>	INSERT INTO TBL_USER_INFO (id, userName, realName, userAge, sex)<br>	VALUES (#&#123;id&#125;, #&#123;userName&#125;, #&#123;realName&#125;, #&#123;userAge&#125;, #&#123;sex&#125;)<br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>在 <code>selectKey</code> 的元素属性如下：</p>
+<ul>
+<li><em>keyProperty</em>：指定生成的主键是 POJO 的哪个属性</li>
+<li><em>resultType</em>：指定返回结果的数据类型</li>
+<li><em>order</em>：标明了 <code>selectKey</code> 的执行顺序
+<ul>
+<li>BEFIRE：先执行 <code>selectKey</code> 中的语句，后执行插入语句</li>
+<li>AFTER：先执行插入语句，后执行 <code>selectKey</code> 中的语句</li>
+</ul>
+</li>
+</ul>
+<h2 id="UPDATE">UPDATE</h2>
+<p>属性和 <code>&lt;select&gt;</code> 、<code>&lt;inseert</code> 差不多，执行后会返回一个整数，表示受影响的行数。</p>
+<ol>
+<li>
+<p>新建 Mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-title function_">updateUserById</span><span class="hljs-params">(User user)</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置 Mapper 对应的 XML 文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateUserById&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.example.demo.entity.User&quot;</span>&gt;</span><br>    UPDATE TBL_USER_INFO SET userAge = #&#123;userAge&#125; WHERE id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/updateUser&quot;)</span><br><span class="hljs-keyword">public</span> JsonResult <span class="hljs-title function_">updateUser</span><span class="hljs-params">()</span>&#123;<br><br>    <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>    user.setUserAge(<span class="hljs-string">&quot;22&quot;</span>);<br>    user.setId(<span class="hljs-string">&quot;9190c0e2a6524bd49d669ec745b6e0f5&quot;</span>);<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> userMapper.updateUserById(user);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JsonResult</span>(flag);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>#DELETE</p>
+<p>属性和 <code>&lt;select&gt;</code> 、<code>&lt;inseert</code> 差不多，执行后会返回一个整数，表示受影响的行数。</p>
+<ol>
+<li>
+<p>新建 Mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-title function_">updateUserById</span><span class="hljs-params">(User user)</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>配置 Mapper 对应的 XML 文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateUserById&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;com.example.demo.entity.User&quot;</span>&gt;</span><br>    UPDATE TBL_USER_INFO SET userAge = #&#123;userAge&#125; WHERE id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>新建 Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/updateUser&quot;)</span><br><span class="hljs-keyword">public</span> JsonResult <span class="hljs-title function_">updateUser</span><span class="hljs-params">()</span>&#123;<br><br>    <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>    user.setUserAge(<span class="hljs-string">&quot;22&quot;</span>);<br>    user.setId(<span class="hljs-string">&quot;9190c0e2a6524bd49d669ec745b6e0f5&quot;</span>);<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> userMapper.updateUserById(user);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JsonResult</span>(flag);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;成功&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="SQL">SQL</h2>
+<p>映射文件中的 <code>&lt;sql&gt;</code> 标签可以用于定义 SQL 语句的一部分，方便其他语句进行引用。</p>
+<p>使用 <code>&lt;include&gt;</code> 进行调用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">sql</span> <span class="hljs-attr">id</span> = <span class="hljs-string">&quot;user&quot;</span>&gt;</span> id, userName, userAge <span class="hljs-tag">&lt;/<span class="hljs-name">sql</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span> = <span class="hljs-string">&quot;selectUser&quot;</span>&gt;</span><br>	SELECT <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span> = <span class="hljs-string">&quot;user&quot;</span>/&gt;</span> FROM TBL_USER_INFO<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="附录">附录</h2>
+<h3 id="表结构">表结构</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> `tbl_user_info`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `tbl_user_info`  (<br>  `id` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `userName` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;用户名&#x27;</span>,<br>  `realName` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;真实姓名&#x27;</span>,<br>  `userAge` <span class="hljs-type">varchar</span>(<span class="hljs-number">10</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;年龄&#x27;</span>,<br>  `sex` <span class="hljs-type">varchar</span>(<span class="hljs-number">2</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;性别&#x27;</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`id`) <span class="hljs-keyword">USING</span> BTREE<br>) ENGINE <span class="hljs-operator">=</span> InnoDB <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-operator">=</span> utf8 <span class="hljs-keyword">COLLATE</span> <span class="hljs-operator">=</span> utf8_general_ci ROW_FORMAT <span class="hljs-operator">=</span> <span class="hljs-keyword">Dynamic</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="测试数据">测试数据</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;14485234-6af8-11eb-a63f-000c29ca29a1&#x27;</span>, <span class="hljs-string">&#x27;赵百灵&#x27;</span>, <span class="hljs-string">&#x27;赵百灵&#x27;</span>, <span class="hljs-string">&#x27;34&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;14505273-6af8-11eb-a63f-000c29ca29a1&#x27;</span>, <span class="hljs-string">&#x27;于鬻菊&#x27;</span>, <span class="hljs-string">&#x27;于鬻菊&#x27;</span>, <span class="hljs-string">&#x27;65&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;1450ed01-6af8-11eb-a63f-000c29ca29a1&#x27;</span>, <span class="hljs-string">&#x27;郭小宝&#x27;</span>, <span class="hljs-string">&#x27;郭小宝&#x27;</span>, <span class="hljs-string">&#x27;12&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;1451e25f-6af8-11eb-a63f-000c29ca29a1&#x27;</span>, <span class="hljs-string">&#x27;捅主任&#x27;</span>, <span class="hljs-string">&#x27;捅&#x27;</span>, <span class="hljs-string">&#x27;44&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;14523ca7-6af8-11eb-a63f-000c29ca29a1&#x27;</span>, <span class="hljs-string">&#x27;爱新觉罗筐&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-string">&#x27;64&#x27;</span>, <span class="hljs-keyword">NULL</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;145273d9-6af8-11eb-a63f-000c29ca29a1&#x27;</span>, <span class="hljs-string">&#x27;王富贵&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-string">&#x27;43&#x27;</span>, <span class="hljs-keyword">NULL</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;9190c0e2a6524bd49d669ec745b6e0f5&#x27;</span>, <span class="hljs-string">&#x27;张王李刘&#x27;</span>, <span class="hljs-string">&#x27;张王&#x27;</span>, <span class="hljs-string">&#x27;22&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `tbl_user_info` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;9191.0&#x27;</span>, <span class="hljs-string">&#x27;张王李刘&#x27;</span>, <span class="hljs-string">&#x27;张王&#x27;</span>, <span class="hljs-string">&#x27;33&#x27;</span>, <span class="hljs-string">&#x27;男&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/traveller/categories/Mybatis/" class="category-chain-item">Mybatis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/traveller/tags/Mybatis/">#Mybatis</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mybatis（一）：XML常用标签</div>
+      <div>https://lazylutra.github.io/traveller/6492.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>征蓬</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/traveller/51251.html" title="Mybatis（二）：动态sql">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mybatis（二）：动态sql</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/traveller/4225.html" title="学习路线和常用工具">
+                        <span class="hidden-mobile">学习路线和常用工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/traveller/js/events.js" ></script>
+<script  src="/traveller/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/traveller/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/traveller/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/traveller/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

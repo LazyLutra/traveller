@@ -1,0 +1,942 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/traveller/pics/other/tabImg.jpg">
+  <link rel="icon" href="/traveller/pics/other/tabImg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="征蓬">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基础篇三：索引。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL实战 基础篇（三）">
+<meta property="og:url" content="https://lazylutra.github.io/traveller/47099.html">
+<meta property="og:site_name" content="征蓬">
+<meta property="og:description" content="基础篇三：索引。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lazylutra.github.io/traveller/pics/cover/MySQL.jpeg">
+<meta property="article:published_time" content="2021-05-12T07:45:48.000Z">
+<meta property="article:modified_time" content="2023-01-10T07:39:03.269Z">
+<meta property="article:author" content="征蓬">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lazylutra.github.io/traveller/pics/cover/MySQL.jpeg">
+  
+  
+  
+  <title>MySQL实战 基础篇（三） - 征蓬</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/traveller/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/traveller/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/traveller/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lazylutra.github.io","root":"/traveller/","version":"1.9.4","typing":{"enable":true,"typeSpeed":80,"cursorChar":"✨","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/traveller/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/traveller/js/utils.js" ></script>
+  <script  src="/traveller/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/traveller/">
+      <strong>征蓬</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/traveller/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/traveller/pics/other/09.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL实战 基础篇（三）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-12 15:45" pubdate>
+          2021年5月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MySQL"
+        id="heading-62a004b95946bb97541afa471dcca73a" role="tab" data-toggle="collapse" href="#collapse-62a004b95946bb97541afa471dcca73a"
+        aria-expanded="true"
+      >
+        MySQL
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62a004b95946bb97541afa471dcca73a"
+           role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/traveller/11256.html" title="MySQL实战 基础篇（一）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL实战 基础篇（一）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/traveller/47099.html" title="MySQL实战 基础篇（三）"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">MySQL实战 基础篇（三）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/traveller/48002.html" title="MySQL实战 基础篇（二）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL实战 基础篇（二）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/traveller/7044.html" title="MySQL实战 基础篇（五）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL实战 基础篇（五）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/traveller/55610.html" title="MySQL实战 基础篇（四）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL实战 基础篇（四）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/traveller/26960.html" title="MySQL常用"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL常用</span>
+        </a>
+      
+    
+      
+      
+        <a href="/traveller/51857.html" title="索引补充"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">索引补充</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL实战 基础篇（三）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>该系列是极客时间林晓斌的 MySQL实战45讲 课程笔记。</p>
+</blockquote>
+<h2 id="数据结构">数据结构</h2>
+<p>索引的出现是为了提高查询效率，有很多种实现方式，也就引入了索引模型的概念。</p>
+<h3 id="哈希表">哈希表</h3>
+<p>哈希表<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[来吧！一文彻底搞定哈希表！](https://zhuanlan.zhihu.com/p/95156642)">[1]</span></a></sup>是以键值对（key - value）的形式存储，输入待查找的 key，就可以找到对应的 value。</p>
+<p>实现思路： 将 value 放在一个数组里，然后使用哈希函数将 key 换算成数组中确定的位置，把 value 保存在该位置上。</p>
+<p>哈希冲突<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="[数据结构之哈希（hash）表](https://www.cnblogs.com/s-b-b/p/6208565.html)">[2]</span></a></sup>：多个 key 值经过哈希函数换算后，会出现值相同的情况。为了处理这种情况，需要拉出一个链表进行存储。（这里使用的是拉链法，还有其他解决方式）</p>
+<hr>
+<p><img src="/pics/MySQL/%E5%93%88%E5%B8%8C%E8%A1%A8%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="/traveller/img/loading.gif" lazyload alt="哈希表存储示意图"></p>
+<p>以上图为例，<strong>ID_CARD_2</strong> 和 <strong>ID_CARD_4</strong> 根据哈希函数换算出的值都是 N。为了解决这个问题，将其都保存到 N 的链表中。</p>
+<p>如果需要查找 ID_CARD_2，处理过程是这样的：</p>
+<ol>
+<li>
+<p>将 ID_CARD_2 通过哈希函数得出 N；</p>
+</li>
+<li>
+<p>在链表中按照顺序遍历，找到 USER2。</p>
+</li>
+</ol>
+<p>图中四个 ID_CRAD_N 的值不是递增的，这样的好处是，在增加新的 USER 时速度很快，只需要按照顺序在后面追加即可。</p>
+<p>也不是没有缺点，因为这样是无序排列的，所以区间查询的速度很慢，例如：需要查找 [ID_CARD_X, ID_CARD_Y] 之间的的所有 USER，就必须全部扫描。</p>
+<div class="notification is-danger">
+<p>哈希表只适用于等值查询的场景，例如：Memcached、Redis 等 NoSQL 引擎。</p>
+</div>
+<h3 id="有序数组">有序数组</h3>
+<p><img src="/pics/MySQL/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="/traveller/img/loading.gif" lazyload alt="有序数组存储示意图"></p>
+<p>如果使用有序数组实现保存并查找身份证、用户名的功能，假设保存的身份证号不重复，这个数组就是按照递增的顺序保存。</p>
+<p>在查询 ID_CARD_2 时，使用二分法就能快速得到结果，时间复杂度是 O(log(N))。</p>
+<p>这个索引结果也支持范围查询，假设需要查找范围在 [ID_CARD_X, ID_CARD_Y] 区间的 User，先用二分法找到 ID_CARD_X（如果 ID_CARD_X 不存在，就找大于它的第一个 User），然后向右遍历，直到查询出第一个大于 ID_CARD_Y 的值，退出循环。</p>
+<p>在查询效率来说，有序数组是最好的数据结构。</p>
+<p>但是，在更新数据时就非常麻烦，往中间插入一条记录，就需要挪动后面的全部记录。</p>
+<div class="notification is-danger">
+<p>有序数组只适用于静态存储引擎，例如：保存某年的全部城市人口信息。这类不需要修改的数据。</p>
+</div>
+<h3 id="二叉树">二叉树</h3>
+<p><img src="/pics/MySQL/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="/traveller/img/loading.gif" lazyload alt="二叉树示意图"></p>
+<p>二叉树的特点是：</p>
+<ol>
+<li>
+<p>父节点左子树 所有节点值<strong>小于</strong>父节点的值</p>
+</li>
+<li>
+<p>父节点右子树 所有节点值<strong>大于</strong>父节点的值</p>
+</li>
+</ol>
+<p>按照示意图，如果要查询 ID_CARD_2，则搜索顺序为：USER A -&gt; USER C -&gt; USER F -&gt; USER 2，时间复杂度为 O(log(N))。</p>
+<p>为了维持 O(log(N)) 的查询复杂度，就必须保证这是颗平衡二叉树。平衡更新的时间复杂度是 O(log(N))。</p>
+<div class="notification is-danger">
+<p>二叉树是搜索效率最高的，但是实际上大多数的数据库存储却并不使用二叉树。</b><br><br><br>
+假设一颗平衡二叉树需要保存 100 万数据，树高为 20，一次查询需要访问二十个数据块。<br><br><br>
+使用机械硬盘随机读一个数据块大概需要 10ms 左右的寻址时间，如果访问 100 万行的表，单独访问一行大概需要 20 * 10ms。时间非常慢。</p>
+</div>
+<h4 id="N叉树">N叉树</h4>
+<p>为了让查询尽可能少的访问磁盘，就必须少访问数据块，就应该使用 N叉树，这里的 N 取决于数据块的大小。</p>
+<p>以 InnoDB 的整数字段为例，N 差不多是 1200，树高 4 层的时候，就可以保存 1200 的数据，大概有 17 亿。</p>
+<p>考虑到树根的数据块总是在内存中的，一个 10 亿行的表上一个整数字段的索引，查找一个值最多只需要访问 3 次磁盘。其实，树的第二层也有很大概率在内存中，那么访问磁盘的平均次数就更少了。</p>
+<h2 id="InnoDB索引模型">InnoDB索引模型</h2>
+<p>InnoDB 的索引使用 B+ 树索引模型，所有数据都保存在 B+ 树中。</p>
+<p>每张表都是多个 B+ 树：一个主键索引树和多个非主键索引树。树节点的 key 就是某行的主键，value 是该行的其他数据。</p>
+<p>每个索引都对应一颗 B+ 树，新建索引就是新建一个 B+ 树，如果查询不走索引，则遍历主 B+ 树。</p>
+<hr>
+<blockquote>
+<p>这部分参考了《MySQL的InnoDB索引原理详解》<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="[MySQL的InnoDB索引原理详解](https://www.cnblogs.com/williamjie/p/11081081.html)">[5]</span></a></sup> 第二节 Mysql 的存储引擎和索引。<br>
+原文中还对比了 MyISM 的非聚簇索引。</p>
+</blockquote>
+<p>假设有下面这个表，主键列为 ID，有字段 Name、Company，且字段 Name 上有索引。</p>
+<p>建表语句为：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user_info(<br>  id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,<br>  name <span class="hljs-type">varchar</span>(<span class="hljs-number">16</span>),<br>  company <span class="hljs-type">varchar</span>(<span class="hljs-number">32</span>),<br>  index (name)<br>)engine <span class="hljs-operator">=</span> InnoDB;<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> user_info (id, name, company) <span class="hljs-keyword">values</span> (<span class="hljs-string">&#x27;5&#x27;</span>,<span class="hljs-string">&#x27;王钢蛋&#x27;</span>,<span class="hljs-string">&#x27;公司A&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> user_info (id, name, company) <span class="hljs-keyword">values</span> (<span class="hljs-string">&#x27;8&#x27;</span>,<span class="hljs-string">&#x27;小明&#x27;</span>,<span class="hljs-string">&#x27;公司B&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> user_info (id, name, company) <span class="hljs-keyword">values</span> (<span class="hljs-string">&#x27;13&#x27;</span>,<span class="hljs-string">&#x27;小刚&#x27;</span>,<span class="hljs-string">&#x27;公司C&#x27;</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> user_info (id, name, company) <span class="hljs-keyword">values</span> (<span class="hljs-string">&#x27;16&#x27;</span>,<span class="hljs-string">&#x27;小红&#x27;</span>,<span class="hljs-string">&#x27;公司D&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<table>
+   <tr>
+      <td><b>ID</b></td>
+      <td><b>Name</b></td>
+      <td><b>Company</b></td>
+   </tr>
+   <tr>
+      <td>5</td>
+      <td>王钢蛋</td>
+      <td>公司A</td>
+   </tr>
+   <tr>
+      <td>8</td>
+      <td>小明</td>
+      <td>公司B</td>
+   </tr>
+   <tr>
+      <td>13</td>
+      <td>小红</td>
+      <td>公司C</td>
+   </tr>
+   <tr>
+      <td>16</td>
+      <td>小刚</td>
+      <td>公司D</td>
+   </tr>
+</table>
+<p><img src="/pics/MySQL/InnoDB%E7%B4%A2%E5%BC%95%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="/traveller/img/loading.gif" lazyload alt="InnoDB 索引组织结构图"></p>
+<p>InnoDB 使用的是 聚簇索引（<em>主键索引也被称为聚簇索引</em>），将主键放在一颗 B+ 树中，行数据保存在叶子节点上。</p>
+<ul>
+<li>
+<p>如果使用 id = ‘8’ 的条件查找主键，按照 B+ 树的算法即可找到对应的叶子节点，然后获得行数据。</p>
+</li>
+<li>
+<p>如果使用 name = ‘小刚’ 的条件查询，则有两个步骤：</p>
+<ol>
+<li>
+<p>在辅助键索引的 B+ 树中检索 Name，并获得对应的主键；</p>
+</li>
+<li>
+<p>使用该主键在主键索引的 B+ 树再次执行检索操作，最终到达叶子节点，获取该行数据。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>也就是说，如果使用非主键索引进行查询，会触发一次回表操作，比主键查询要多扫描一颗 B+ 树。因此，尽量多使用主键索引。</p>
+<article class="message is-danger"><div class="message-header">
+<p>聚簇索引的优势在哪？</p>
+</div><div class="message-body">
+<ol>
+<li>因为行数据和叶子节点存储在一起，这样主键和行数据会一起加载进内存。<br>   找到叶子节点后可以立刻返回行数据。如果按照主键 ID 组织数据，查询速度会更快。<br><br></li>
+<li>辅助索引使用主键作为“指针”，不使用地址值作为“指针”的优点是：<br>   (1)  减少了当出现行移动或者数据页分裂时索引的维护工作。<br>   (2)  InnoDB在移动行时，无需更新辅助索引中的“指针”,行的位置会随着数据的修改而发生变化；<br>   如果使用聚簇索引，则不管主键 B+ 树如何改变，辅助索引树都不受影响。</li>
+</ol>
+</div></article>
+<h2 id="索引的几个概念">索引的几个概念</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> user_info (<br>	ID <span class="hljs-type">int</span> <span class="hljs-keyword">PRIMARY</span> KEY,<br>   idCard <span class="hljs-type">varchar</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>	userName <span class="hljs-type">varchar</span>(<span class="hljs-number">16</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;&#x27;</span>,<br>	age <span class="hljs-type">varchar</span>(<span class="hljs-number">6</span>),<br>   isMale tinyint(<span class="hljs-number">1</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>	INDEX userName(userName)<br>) ENGINE <span class="hljs-operator">=</span> InnoDB;<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> user_info<br><span class="hljs-keyword">VALUES</span> (<span class="hljs-number">100</span>, <span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;王钢蛋&#x27;</span>, <span class="hljs-string">&#x27;23&#x27;</span>, <span class="hljs-string">&#x27;0&#x27;</span>),<br>	(<span class="hljs-number">200</span>, <span class="hljs-string">&#x27;1221&#x27;</span>, <span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-string">&#x27;15&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>),<br>	(<span class="hljs-number">300</span>, <span class="hljs-string">&#x27;1529&#x27;</span>, <span class="hljs-string">&#x27;小红&#x27;</span>, <span class="hljs-string">&#x27;20&#x27;</span>, <span class="hljs-string">&#x27;0&#x27;</span>),<br>	(<span class="hljs-number">500</span>, <span class="hljs-string">&#x27;4326&#x27;</span>, <span class="hljs-string">&#x27;小刚&#x27;</span>, <span class="hljs-string">&#x27;18&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>),<br>	(<span class="hljs-number">600</span>, <span class="hljs-string">&#x27;2341&#x27;</span>, <span class="hljs-string">&#x27;于老二&#x27;</span>, <span class="hljs-string">&#x27;32&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>),<br>	(<span class="hljs-number">700</span>, <span class="hljs-string">&#x27;7584&#x27;</span>, <span class="hljs-string">&#x27;斧子&#x27;</span>, <span class="hljs-string">&#x27;24&#x27;</span>, <span class="hljs-string">&#x27;0&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<p>以上面这个表为例，如果我想查询年龄在 15 ~ 20 之间的用户，可以使用这个语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> userName <span class="hljs-keyword">FROM</span> user_info <span class="hljs-keyword">WHERE</span> age <span class="hljs-keyword">BETWEEN</span> <span class="hljs-string">&#x27;15&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-string">&#x27;20&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>在执行的过程中，需要执行几次树的搜索操作，会扫描多少行？</p>
+<p>先过一遍这个语句的执行流程：</p>
+<ol>
+<li>在 Name 索引树上查询 age = 15 的记录，得到 ID = 200；</li>
+<li>根据 ID = 200，在 ID 索引树中获取对应的行数据；</li>
+<li>在 Name 索引树上取下一个值 age = 20 ，得到 ID = 300；</li>
+<li>再回到 ID 索引树中，根据 ID = 300 获取对应的行数据；</li>
+<li>Name 索引树取下一个值 age = 21，不满足条件，循环结束。</li>
+</ol>
+<p>在这个过程中，<strong>回到主键索引树搜索的过程，被称为回表</strong>。</p>
+<p>可以看到，这条查询语句一共读了 Name 索引树的 3 条记录（步骤1、3、5），回表两次（步骤2、4）。</p>
+<p>可以进行索引优化，避免回表过程，如下：</p>
+<h3 id="覆盖索引">覆盖索引</h3>
+<p>如果查询的语句是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> ID <span class="hljs-keyword">FROM</span> user_info <span class="hljs-keyword">WHERE</span> age <span class="hljs-keyword">BETWEEN</span> <span class="hljs-string">&#x27;15&#x27;</span> <span class="hljs-keyword">AND</span> <span class="hljs-string">&#x27;20&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>这时只会查询 ID，命中 age 索引树，叶子节点保存了 ID 值，可以直接返回数据，不需要回表。</p>
+<p>在这个查询中，索引 age 已经覆盖了查询需求，被称为 <strong>覆盖索引</strong><sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="[MySQL索引覆盖与回表](https://www.cnblogs.com/heyanan/p/13570033.html)">[6]</span></a></sup>。</p>
+<div class="notification is-danger">
+<p>由于覆盖索引可以显著减少树的搜索次数、提升查询性能，也是常用的性能提升手段。</p>
+</div>
+<h3 id="最左前缀原则">最左前缀原则</h3>
+<p>B+ 树这种数据结构，可以使用索引的“最左前缀”，定位记录。</p>
+<p>为了直观说明这个问题，以上面的 user_info 表为例，使用 userName、age 建立联合索引：</p>
+<p><img src="/pics/MySQL/%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95.png" srcset="/traveller/img/loading.gif" lazyload alt="联合索引.png"></p>
+<p>当查询条件为 userName = ‘小刚’，可以快速定位到 ID = 500；<br>
+当查询条件为 userName like ‘王%’，查找到第一个符合条件的记录 ID = 100，再向后遍历，直到不满足条件。</p>
+<p><strong>只要满足最左前缀，就可以利用索引加速，包括最左的几个字符或者字段</strong>：</p>
+<ul>
+<li>字符：userName like ‘王%’;</li>
+<li>字段：userName = ‘斧子’ and age = ‘24’;</li>
+</ul>
+<article class="message is-danger"><div class="message-header">
+<p>如何安排联合索引内的字段顺序？</p>
+</div><div class="message-body">
+<p>这里的标准是：索引的复用能力。<br><br><br>
+第一原则：通过调整顺序可以减少索引数量，则优先采用。<br><br>
+      如果使用 (idCard, userName) 建立联合索引，就可以不用建立 idCard 字段的索引。<br><br><br>
+如果既有联合索引 (idCard, userName)，又需要根据 userName 单独查询呢？<br><br><br>
+第二原则：空间。<br><br>
+      idCard字段要大于userName字段，则推荐建立联合索引 (idCard, userName)和单字段索引(userName)。</p>
+</div></article>
+<h3 id="索引下推">索引下推</h3>
+<p>这是 MySQL 5.6 版本引入的，可以在索引遍历的过程中，对索引包含的字段先做判断，过滤掉不满足条件的记录，减少回表次数。</p>
+<p>在 MySQL 5.6 版本之前，只能根据顺序回表，在主键索引上找到相应的数据行，然后比对字段值。</p>
+<p>以该语句为例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> user_info <span class="hljs-keyword">WHERE</span> userName <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;于%&#x27;</span> <span class="hljs-keyword">AND</span> age <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-keyword">AND</span> isMale <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+<p><img src="/pics/MySQL/%E6%97%A0%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8.png" srcset="/traveller/img/loading.gif" lazyload alt="无索引下推.png"></p>
+<p><img src="/pics/MySQL/%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8.png" srcset="/traveller/img/loading.gif" lazyload alt="有索引下推.png"></p>
+<p>图中每个箭头表示回表一次。</p>
+<ul>
+<li>无索引下推：因为不需要比对，特意去掉了 age 的值，会按照顺序查找 ID 再回表取出记录。<strong>回表 4 次</strong></li>
+<li>有索引下推：在索引内部就比对了 age，不满足 age = ‘20’ 的记录直接跳过，只对 ID6、ID9 的数据回表。<strong>回表 2 次</strong></li>
+</ul>
+<h2 id="参考">参考</h2>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/95156642">来吧！一文彻底搞定哈希表！</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cnblogs.com/s-b-b/p/6208565.html">数据结构之哈希（hash）表</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.csdn.net/fyj13925475957/article/details/104700747">B树与多叉树</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.csdn.net/czydream/article/details/104354295">多叉树、多路查找树、B树、B+树、B*树介绍</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cnblogs.com/williamjie/p/11081081.html">MySQL的InnoDB索引原理详解</a>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cnblogs.com/heyanan/p/13570033.html">MySQL索引覆盖与回表</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/traveller/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/traveller/tags/MySQL/">#MySQL</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL实战 基础篇（三）</div>
+      <div>https://lazylutra.github.io/traveller/47099.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>征蓬</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年5月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/traveller/55610.html" title="MySQL实战 基础篇（四）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL实战 基础篇（四）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/traveller/19087.html" title="Vue（二）">
+                        <span class="hidden-mobile">Vue（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/traveller/js/events.js" ></script>
+<script  src="/traveller/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/traveller/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/traveller/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/traveller/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
